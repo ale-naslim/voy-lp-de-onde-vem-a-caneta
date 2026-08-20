@@ -48,7 +48,7 @@ function loadAll(){if(started)return;started=true;for(var k=0;k<N;k++)loadFrame(
 window.addEventListener('resize',resize);resize();
 if(useScroll&&window.gsap){
 primeLoad(section,loadAll);
-ScrollTrigger.create({trigger:section,start:'top bottom',end:'bottom bottom',scrub:0.5,onUpdate:function(self){var k=Math.min(N-1,Math.floor(self.progress*N));if(k!==cur)draw(k);setOverlay(self.progress);}});
+ScrollTrigger.create({trigger:section,start:'top bottom',end:'bottom top',scrub:0.5,onUpdate:function(self){var k=Math.min(N-1,Math.floor(self.progress*N));if(k!==cur)draw(k);setOverlay(self.progress);}});
 }else{loadFrame(0);setOverlay(1);if(ov)ov.style.setProperty('--ovy','0px');}
 }
 function mountContainScrub(wrapId,path,total,useScroll){
@@ -108,7 +108,6 @@ gsap.fromTo(span,{y:-travel*0.45},{y:travel*0.55,ease:'none',scrollTrigger:{trig
 }
 mountScrub(true);
 mountContainScrub('boxScrub','https://cdn.jsdelivr.net/gh/ale-naslim/voy-lp-de-onde-vem-a-caneta@main/frames/caixa/frame_',121,true);
-gsap.fromTo('#penHeader',{yPercent:-11},{yPercent:11,ease:'none',scrollTrigger:{trigger:'#confirme',start:'top bottom',end:'bottom top',scrub:true}});
 document.querySelectorAll('.voice-media').forEach(function(wrap){
 var v=wrap.querySelector('video'),badge=wrap.querySelector('.vmute');
 if(!v)return;
